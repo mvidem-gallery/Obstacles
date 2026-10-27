@@ -29,6 +29,7 @@ def parse_args():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--train', dest='train', action='store_true')
     mode.add_argument('--test', dest='test', action='store_true')
+    mode.add_argument('--show', type=int)
 
     return parser.parse_args()
 
@@ -59,18 +60,26 @@ def main():
 
     api = HfApi()
 
+    # git clone https://huggingface.co/datasets/Abtinzandi/Obstacle-Detection-Dataset-YOLO
+
     ds = config.dataset_path
 
     print(f"Датасет в: {ds}")
 
-    if not args.test:
-        model = YOLO(config.model)
-        train(model, ds, config)
+    if args.show:
+        number = args.show
+        images_list = list((Path(ds) / "train" / "images").rglob("*.jpg"))
 
-    else:
+        ids = random.sample(range(0, len(images_list)), min(number, len(images_list)))
+        images = [Image.open(images_list[i]) for i in ids]
+        show_images(images)
+    elif args.test:
         number = 4
         path = config.weights_path
         model = YOLO(path)
+    else:
+        model = YOLO(config.model)
+        train(model, ds, config)
 
         images_list = list((Path(ds) / "train" / "images").rglob("*.jpg"))
 
