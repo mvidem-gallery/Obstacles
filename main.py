@@ -77,9 +77,6 @@ def main():
         number = 4
         path = config.weights_path
         model = YOLO(path)
-    else:
-        model = YOLO(config.model)
-        train(model, ds, config)
 
         images_list = list((Path(ds) / "train" / "images").rglob("*.jpg"))
 
@@ -87,6 +84,9 @@ def main():
         images = [Image.open(images_list[i]) for i in ids]
         images = [model(img)[0].plot()[:, :, ::-1] for img in images]
         show_images(images)
+    else:
+        model = YOLO(config.model)
+        train(model, ds, config)
 
 
 def train(model, ds, config):

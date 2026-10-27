@@ -1,4 +1,4 @@
 model: "yolov8s.pt"
 epochs: 100
-weights_path: "weights.pt"
+weights_path: "runs/detect/train/weights/best.pt"
 dataset_path: "dataset/Obstacle-Detection-Dataset-YOLO/"
