@@ -1,0 +1,6 @@
+PyYAML
+matplotlib
+Pillow
+huggingface_hub
+ultralytics
+omegaconf
