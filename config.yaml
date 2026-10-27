@@ -1,0 +1,4 @@
+model: "yolov8s.pt"
+epochs: 100
+weights_path: "weights.pt"
+dataset_path: "dataset/Obstacle-Detection-Dataset-YOLO/"

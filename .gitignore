@@ -1,0 +1,7 @@
+Obstacle-Detection-Dataset-YOLO/
+# або універсальний шаблон, якщо назви варіюються:
+*dataset*/
+runs/
+.venv/
+.idea/
+*.pt
